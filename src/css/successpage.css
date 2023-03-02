@@ -1,0 +1,20 @@
+.success {
+    margin: calc(10% + 6em) auto;
+}
+
+.success-img {
+    margin: 1em auto;
+}
+.success-subtext,
+.success-text {
+    text-align: center;
+    color: #484848;
+}
+
+.success-subtext {
+    font-size: 1.25rem;
+}
+
+.success-text {
+    font-size: 2rem;
+}

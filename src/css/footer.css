@@ -1,0 +1,27 @@
+/* Footer */
+
+footer,
+.footer-links {
+    display: flex;
+}
+
+footer {
+    color: white;
+    background: #282828;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.footer-links {
+    flex-direction: row;
+}
+
+.footer-links > li {
+    margin: 1em;
+}
+
+.footer-link {
+    color: white;
+}

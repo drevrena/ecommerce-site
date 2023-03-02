@@ -1,0 +1,97 @@
+.nav-links,
+.nav-left-wrapper,
+.cart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 1em;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 16px 1px #282828;
+}
+
+.nav-left-wrapper {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: none;
+}
+
+.icon {
+    width: 32px;
+}
+
+.logo {
+    cursor: pointer;
+    width: 180px;
+}
+
+.mobile {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-right: 1em;
+    margin: auto 1em auto auto;
+}
+
+/*
+ * Cool underline effect from https://www.30secondsofcode.org/css/s/hover-underline-animation
+ */
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: black;
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #282828;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/**/
+
+@media (min-width: 480px) {
+
+    .nav-container {
+        padding: 1.5em calc(10% + .5em);
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+
+}

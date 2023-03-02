@@ -1,0 +1,38 @@
+
+.no-match,
+.no-match div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6em;
+}
+
+.no-match h1 {
+    font-size: 6rem;
+    font-weight: 700;
+}
+
+.no-match h2 {
+    text-align: center;
+    color: #585766;
+    font-size: 1.5rem;
+}
+
+.no-match div {
+    flex: 1;
+}
+
+.no-match {
+    justify-self: flex-start;
+
+}
+
+.return-btn {
+    border: 2px solid black;
+    border-radius: .5em;
+    margin-top: 2em;
+    cursor: pointer;
+    background: none;
+    padding: 1em;
+}

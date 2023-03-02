@@ -1,0 +1,25 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f4f4f4;
+    /** 8em for fixed nav **/
+    min-height: calc(100vh - 8em);
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 8em);
+    margin-top: 8em;
+}
+
+.container {
+    margin: .5em 10%;
+}
+
+a::before,
+a::after,
+a {
+    color: black;
+    text-decoration: none;
+}
