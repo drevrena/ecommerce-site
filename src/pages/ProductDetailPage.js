@@ -3,12 +3,10 @@ import { useLoaderData } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { NotificationManager } from 'react-notifications';
 import Rating from "../components/Rating";
-import usePaymentModal from "../hooks/usePaymentModal";
 import "../css/productdetailpage.css"
 
 function ProductDetailPage() {
     const data = useLoaderData()
-    const {setShow} = usePaymentModal()
     const {addItem} = useContext(CartContext)
     const {title, description, price, image, rating} = data
 
@@ -28,8 +26,7 @@ function ProductDetailPage() {
                     <span className="product-price">${price}</span>
                 </div>
                 <div className="product-btns">
-                    <button className="product-detail-btn" id="add-to-cart" onClick={addToCart} >Add to Cart</button>
-                    <button className="product-detail-btn" onClick={() => setShow(true)}>Buy Now</button>
+                    <button className="product-detail-btn" onClick={addToCart} >Add to Cart</button>
                 </div>
             </div>
         </div>

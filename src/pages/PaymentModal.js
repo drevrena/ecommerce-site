@@ -1,44 +1,44 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { PaymentModalContext } from "../context/PaymentModalContext";
 import { CartContext } from "../context/CartContext";
-import usePaymentModal from "../hooks/usePaymentModal";
-import FormInput from "../components/FormInput.js"
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "../components/CheckoutForm";
 import "../css/paymentmodal.css"
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+
 function PaymentModal() {
-    const {show, setShow} = usePaymentModal()
-    const {emptyCart} = useContext(CartContext)
-    const navigate = useNavigate()
+    const {show, setShow} = useContext(PaymentModalContext)
+    const {items} = useContext(CartContext)
+    const [secret, setSecret] = useState()
+    const [loading, setLoading] = useState(true)
 
-    function handleSubmit(event) {
-      event.preventDefault()
-      // https://beta.reactjs.org/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form
-      const formData = new FormData(event.target)
-      emptyCart()
-      setShow(false)
-      navigate("/success", {state: Object.fromEntries(formData.entries())})
-    }
+    const options = {
+        clientSecret: secret,
+    };
 
+    useEffect(() => {
+        if(show) {
+            const total = items.reduce((acc,curr) => acc + (curr.price * curr.amount), 0)
+            fetch(`${process.env.REACT_APP_AWS_STRIPE}/?amount=${Math.floor(total * 100)}`)
+                .then(res => res.json())
+                .then(data => setSecret(data.client_secret))
+                .finally(() => setLoading(false))
+        }
+    }, [show, items])
+    
     return(
-        <>
-            {show && <div className="payment-modal">
-                        <button className="modal-close" onClick={() => setShow(false)}>X</button>
-                        <h1 className="modal-title">Credit Card</h1>
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-card">
-                                <FormInput name="name" label="Cardholder Name"/>
-                                <FormInput name="number" label="Card Number"/>
-                                <div className="modal-card-inner">
-                                    <FormInput name="date" label="Exp Date"/>
-                                    <FormInput name="cvv" label="CVV"/>
-                                </div>
-                            </div>
-                            <button className="modal-pay">Pay</button>
-                        </form>
-                    </div>}
-            {show && <div className="bg"></div>}
+        show && <>  
+            <div className="payment-modal">
+                <button className="modal-close" onClick={() => setShow(false)}>X</button>
+                {loading ?  <div className="lds-dual-ring"></div> : 
+                <Elements stripe={stripePromise} options={options}>
+                    <CheckoutForm />
+                </Elements>}
+            </div>
+            <div className="bg"></div>
         </>
-
     )
 }
 

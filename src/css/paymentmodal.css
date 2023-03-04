@@ -1,12 +1,10 @@
 
 /* Payment Modal */
 
-.modal-card {
+form {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 1em;
-    gap: 2em;
+    margin: 2em;
+    margin-top: 4em;
 }
 
 .modal-pay {
@@ -15,7 +13,7 @@
     width: 80%;
     max-width: 320px;
     padding: .5em;
-    margin: 2em auto;
+    margin: 4em auto;
     background-color: #4cdb9d;
     color: white;
     font-size: 1.25rem;
@@ -28,14 +26,6 @@
     background-color: #43cf8f;
 }
 
-.modal-title {
-    text-align: center;
-    color: #484848;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 2em auto;
-}
-
 .modal-close {
     position: absolute;
     cursor: pointer;
@@ -43,47 +33,11 @@
     color: #464646;
     font-weight: 700;
     font-size: 1.25rem;
+    width: 24px;
     border: none;
     top: 8px;
     right: 8px;
 }
-
-.modal-card-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-}
-
-.label-wrapper {
-    position: relative;
-    margin: auto;
-    width: 100%;
-    max-width: 540px;
-}
-
-.label-wrapper > input {
-    border-radius: .25em;
-    border: 1px solid #888888;
-    box-shadow: 0 0 4px 1px #d8d8d8;
-    width: 100%;
-    padding: .5em 1em;
-}
-
-.label-wrapper > label {
-    font-size: 1.15rem;
-    position: absolute;
-    top: -0.75em;
-    left: 10px;
-    color: #484848;
-    background-color: white;
-    padding: -1em .25em;
-}
-
-.label-wrapper > input:focus {
-    outline: none;
-    border: 1px solid #42b885;
-}
-
 
 .payment-modal {
     display: flex;
@@ -96,8 +50,7 @@
     border-radius: 1em;
     z-index: 5;
     width: 80vw;
-    min-height: 60vh;
-    max-width: 720px;
+    max-width: 480px;
 }
 
 .bg{
@@ -109,4 +62,10 @@
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(3px);
     z-index: 3;
+}
+  
+
+.payment-modal .lds-dual-ring:after {
+    margin-top: 50%;
+    margin-bottom: 50%;
 }

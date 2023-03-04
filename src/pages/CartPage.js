@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
+import { PaymentModalContext } from "../context/PaymentModalContext";
 import { CartContext } from "../context/CartContext";
 import CartItem from "../components/CartItem";
-import usePaymentModal from "../hooks/usePaymentModal";
 import "../css/cartpage.css"
 
  function CartPage() {
-    const {setShow} = usePaymentModal()
-    const {items, getTotal} = useContext(CartContext)
+    const {items} = useContext(CartContext)
+    const {setShow} = useContext(PaymentModalContext)
     const cartItems = items.map(item => <CartItem key={item.id} item={item}/>)
+    const total = items.reduce((acc, curr) => acc + (curr.price * curr.amount), 0)
 
     function handleBuyNow() {
         if (cartItems.length <= 0)
             return
-        //Scroll to top in case cart-list is very long to have payment modal show up correctly
-        window.scrollTo(0, 0)
         setShow(true)
     }
 
@@ -29,7 +28,7 @@ import "../css/cartpage.css"
             <div className="cart-checkout">
                 <div className="cart-total">
                     <p>Subtotal</p>
-                    <h3 className="cart-total-amount">${getTotal().toFixed(2)}</h3>
+                    <h3 className="cart-total-amount">${total.toLocaleString()}</h3>
                 </div>
                 <button className="buy-now" onClick={handleBuyNow}>Buy now</button>
             </div>

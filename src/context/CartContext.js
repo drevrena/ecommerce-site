@@ -42,11 +42,7 @@ function CartContextProvider({children}) {
         })
     }
 
-    function getTotal() {
-        return items.reduce((acc,curr) => acc + (curr.price * curr.amount), 0)
-    }
-
-    return <CartContext.Provider value={{items, addItem, removeItem, emptyCart, getTotal}}>
+    return <CartContext.Provider value={{items, addItem, removeItem, emptyCart}}>
                 {children}
             </CartContext.Provider>
 }

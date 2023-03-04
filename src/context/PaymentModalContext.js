@@ -1,13 +1,13 @@
-import { createContext, useState} from "react"
+import { useState, createContext } from "react";
 
-const PaymentModalContext  = createContext()
+const PaymentModalContext = createContext()
 
 function PaymentModalContextProvider({children}) {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState()
 
     return <PaymentModalContext.Provider value={{show, setShow}}>
-                {children}
-            </PaymentModalContext.Provider>
+        {children}
+    </PaymentModalContext.Provider>
 }
 
 export {PaymentModalContextProvider, PaymentModalContext}
